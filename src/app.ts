@@ -5,6 +5,8 @@ import { IBotContext } from './context/context.interface';
 import { Command } from './commands/command.class';
 import { StartCommand } from './commands/start.command';
 import LocalSession from 'telegraf-session-local';
+import { QuestionCommand } from './commands/questions.command';
+import { ProjectsCommand } from './commands/projects.command';
 
 class Bot {
     bot: Telegraf<IBotContext>
@@ -16,7 +18,7 @@ class Bot {
     }
 
     init() {
-        this.commands = [new StartCommand(this.bot)]
+        this.commands = [new StartCommand(this.bot), new QuestionCommand(this.bot), new ProjectsCommand(this.bot)]
         for (const command of this.commands) {
             command.handle()
         }
